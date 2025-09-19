@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
+import LanguageToggle from '@/components/LanguageToggle';
 import { Menu, X, Ticket } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface NavigationProps {
   className?: string;
@@ -24,12 +26,26 @@ const privateNavItems = [
 export default function Navigation({ className = '' }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
+  const { t } = useLanguage();
   
   // TODO: Replace with real authentication state when implementing login
   const isLoggedIn = false; // Mock authentication state
   
-  // Combine nav items based on authentication status
-  const navItems = isLoggedIn ? [...publicNavItems, ...privateNavItems] : publicNavItems;
+  // Combine nav items based on authentication status with translations
+  const getTranslatedNavItems = () => {
+    const translatedPublic = [
+      { href: '/', label: t('nav.home') },
+      { href: '/events', label: t('nav.events') },
+      { href: '/about', label: t('nav.about') },
+    ];
+    const translatedPrivate = [
+      { href: '/my-tickets', label: t('nav.myTickets') },
+    ];
+    
+    return isLoggedIn ? [...translatedPublic, ...translatedPrivate] : translatedPublic;
+  };
+  
+  const navItems = getTranslatedNavItems();
 
   const isActive = (href: string) => {
     if (href === '/') return location === '/';
@@ -75,6 +91,9 @@ export default function Navigation({ className = '' }: NavigationProps) {
                 </div>
               </Link>
             ))}
+            
+            {/* Language Toggle */}
+            <LanguageToggle />
           </div>
 
           {/* Mobile menu button */}

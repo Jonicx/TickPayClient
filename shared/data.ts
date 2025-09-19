@@ -14,6 +14,21 @@ export interface Event {
     lat: number;
     lng: number;
   };
+  mood: {
+    energy: 'low' | 'medium' | 'high';
+    vibe: 'relaxed' | 'energetic' | 'cultural' | 'social' | 'professional';
+    intensity: number; // 1-10 scale
+  };
+  weather?: {
+    condition: 'sunny' | 'cloudy' | 'rainy' | 'stormy';
+    temp: number;
+    isOutdoor: boolean;
+  };
+  transport: {
+    dalaDalaRoutes: string[];
+    bodaBodaTime: string;
+    walkingDistance: string;
+  };
 }
 
 export interface Ticket {
@@ -38,7 +53,10 @@ export const mockEvents: Event[] = [
     price: 25000,
     image: '@assets/generated_images/Concert_event_stage_lighting_fc1e927a.png',
     category: 'Music',
-    coordinates: { lat: -6.7924, lng: 39.2083 }
+    coordinates: { lat: -6.7924, lng: 39.2083 },
+    mood: { energy: 'high', vibe: 'energetic', intensity: 9 },
+    weather: { condition: 'sunny', temp: 28, isOutdoor: false },
+    transport: { dalaDalaRoutes: ['Magomeni-Kivukoni', 'Ubungo-City Centre'], bodaBodaTime: '15 min', walkingDistance: '800m from Kivukoni' }
   },
   {
     id: '2',
@@ -51,7 +69,10 @@ export const mockEvents: Event[] = [
     price: 15000,
     image: '@assets/generated_images/Football_stadium_night_view_170194e3.png',
     category: 'Sports',
-    coordinates: { lat: -6.8235, lng: 39.2695 }
+    coordinates: { lat: -6.8235, lng: 39.2695 },
+    mood: { energy: 'high', vibe: 'social', intensity: 10 },
+    weather: { condition: 'sunny', temp: 30, isOutdoor: true },
+    transport: { dalaDalaRoutes: ['Mwenge-Stadium', 'Ubungo-Stadium'], bodaBodaTime: '20 min', walkingDistance: '1.2km from Ubungo' }
   },
   {
     id: '3',
@@ -64,7 +85,10 @@ export const mockEvents: Event[] = [
     price: 20000,
     image: '@assets/generated_images/Food_festival_outdoor_scene_f56c82e1.png',
     category: 'Food',
-    coordinates: { lat: -6.1659, lng: 39.1917 }
+    coordinates: { lat: -6.1659, lng: 39.1917 },
+    mood: { energy: 'medium', vibe: 'cultural', intensity: 6 },
+    weather: { condition: 'cloudy', temp: 26, isOutdoor: true },
+    transport: { dalaDalaRoutes: ['Creek Road-Forodhani'], bodaBodaTime: '10 min', walkingDistance: '5 min walk from Stone Town center' }
   },
   {
     id: '4',
@@ -77,7 +101,10 @@ export const mockEvents: Event[] = [
     price: 18000,
     image: '@assets/generated_images/Comedy_club_stage_spotlight_28177329.png',
     category: 'Comedy',
-    coordinates: { lat: -6.8000, lng: 39.2833 }
+    coordinates: { lat: -6.8000, lng: 39.2833 },
+    mood: { energy: 'medium', vibe: 'social', intensity: 7 },
+    weather: { condition: 'sunny', temp: 27, isOutdoor: false },
+    transport: { dalaDalaRoutes: ['Posta-Kilimanjaro Hotel'], bodaBodaTime: '12 min', walkingDistance: '600m from Kivukoni Front' }
   },
   {
     id: '5',
@@ -90,7 +117,10 @@ export const mockEvents: Event[] = [
     price: 50000,
     image: '@assets/generated_images/Business_conference_hall_setup_263c6c28.png',
     category: 'Business',
-    coordinates: { lat: -3.3869, lng: 36.6830 }
+    coordinates: { lat: -3.3869, lng: 36.6830 },
+    mood: { energy: 'low', vibe: 'professional', intensity: 4 },
+    weather: { condition: 'sunny', temp: 24, isOutdoor: false },
+    transport: { dalaDalaRoutes: ['Central Bus Station-AICC'], bodaBodaTime: '18 min', walkingDistance: '2km from Arusha Central Market' }
   },
   {
     id: '6',
@@ -103,7 +133,10 @@ export const mockEvents: Event[] = [
     price: 22000,
     image: '@assets/generated_images/Concert_event_stage_lighting_fc1e927a.png',
     category: 'Music',
-    coordinates: { lat: -2.5164, lng: 32.9175 }
+    coordinates: { lat: -2.5164, lng: 32.9175 },
+    mood: { energy: 'high', vibe: 'energetic', intensity: 8 },
+    weather: { condition: 'cloudy', temp: 25, isOutdoor: true },
+    transport: { dalaDalaRoutes: ['Nyamagana-Kirumba'], bodaBodaTime: '25 min', walkingDistance: '3km from Mwanza center' }
   },
   {
     id: '7',
@@ -116,7 +149,10 @@ export const mockEvents: Event[] = [
     price: 35000,
     image: '@assets/generated_images/Football_stadium_night_view_170194e3.png',
     category: 'Sports',
-    coordinates: { lat: -3.3398, lng: 37.3407 }
+    coordinates: { lat: -3.3398, lng: 37.3407 },
+    mood: { energy: 'medium', vibe: 'energetic', intensity: 6 },
+    weather: { condition: 'sunny', temp: 22, isOutdoor: true },
+    transport: { dalaDalaRoutes: ['Moshi Bus Stand-Town Center'], bodaBodaTime: '30 min', walkingDistance: 'Starting point in town center' }
   },
   {
     id: '8',
@@ -129,7 +165,10 @@ export const mockEvents: Event[] = [
     price: 12000,
     image: '@assets/generated_images/Food_festival_outdoor_scene_f56c82e1.png',
     category: 'Food',
-    coordinates: { lat: -6.8161, lng: 39.2626 }
+    coordinates: { lat: -6.8161, lng: 39.2626 },
+    mood: { energy: 'medium', vibe: 'cultural', intensity: 5 },
+    weather: { condition: 'sunny', temp: 29, isOutdoor: true },
+    transport: { dalaDalaRoutes: ['Ubungo-Kariakoo', 'Mwenge-Kariakoo'], bodaBodaTime: '8 min', walkingDistance: '200m from Kariakoo bus stand' }
   },
   {
     id: '9',
@@ -142,7 +181,10 @@ export const mockEvents: Event[] = [
     price: 15000,
     image: '@assets/generated_images/Comedy_club_stage_spotlight_28177329.png',
     category: 'Comedy',
-    coordinates: { lat: -6.7908, lng: 39.2694 }
+    coordinates: { lat: -6.7908, lng: 39.2694 },
+    mood: { energy: 'medium', vibe: 'relaxed', intensity: 6 },
+    weather: { condition: 'sunny', temp: 28, isOutdoor: false },
+    transport: { dalaDalaRoutes: ['Posta-Slipway'], bodaBodaTime: '22 min', walkingDistance: '1.5km from Msimbazi Center' }
   },
   {
     id: '10',
@@ -155,7 +197,10 @@ export const mockEvents: Event[] = [
     price: 30000,
     image: '@assets/generated_images/Business_conference_hall_setup_263c6c28.png',
     category: 'Business',
-    coordinates: { lat: -6.7885, lng: 39.2694 }
+    coordinates: { lat: -6.7885, lng: 39.2694 },
+    mood: { energy: 'low', vibe: 'professional', intensity: 5 },
+    weather: { condition: 'sunny', temp: 27, isOutdoor: false },
+    transport: { dalaDalaRoutes: ['Posta-Kempinski'], bodaBodaTime: '15 min', walkingDistance: '900m from Kivukoni Front' }
   }
 ];
 
