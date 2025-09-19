@@ -29,6 +29,11 @@ export interface Event {
     bodaBodaTime: string;
     walkingDistance: string;
   };
+  planner: {
+    name: string;
+    avatar: string;
+    company?: string;
+  };
 }
 
 export interface Ticket {
@@ -56,7 +61,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -6.7924, lng: 39.2083 },
     mood: { energy: 'high', vibe: 'energetic', intensity: 9 },
     weather: { condition: 'sunny', temp: 28, isOutdoor: false },
-    transport: { dalaDalaRoutes: ['Magomeni-Kivukoni', 'Ubungo-City Centre'], bodaBodaTime: '15 min', walkingDistance: '800m from Kivukoni' }
+    transport: { dalaDalaRoutes: ['Magomeni-Kivukoni', 'Ubungo-City Centre'], bodaBodaTime: '15 min', walkingDistance: '800m from Kivukoni' },
+    planner: { name: 'Sarah Mwamba', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Wasafi Events' }
   },
   {
     id: '2',
@@ -72,7 +78,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -6.8235, lng: 39.2695 },
     mood: { energy: 'high', vibe: 'social', intensity: 10 },
     weather: { condition: 'sunny', temp: 30, isOutdoor: true },
-    transport: { dalaDalaRoutes: ['Mwenge-Stadium', 'Ubungo-Stadium'], bodaBodaTime: '20 min', walkingDistance: '1.2km from Ubungo' }
+    transport: { dalaDalaRoutes: ['Mwenge-Stadium', 'Ubungo-Stadium'], bodaBodaTime: '20 min', walkingDistance: '1.2km from Ubungo' },
+    planner: { name: 'John Mbeki', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Sports Tanzania' }
   },
   {
     id: '3',
@@ -88,7 +95,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -6.1659, lng: 39.1917 },
     mood: { energy: 'medium', vibe: 'cultural', intensity: 6 },
     weather: { condition: 'cloudy', temp: 26, isOutdoor: true },
-    transport: { dalaDalaRoutes: ['Creek Road-Forodhani'], bodaBodaTime: '10 min', walkingDistance: '5 min walk from Stone Town center' }
+    transport: { dalaDalaRoutes: ['Creek Road-Forodhani'], bodaBodaTime: '10 min', walkingDistance: '5 min walk from Stone Town center' },
+    planner: { name: 'Fatma Ali', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Zanzibar Cuisine Co' }
   },
   {
     id: '4',
@@ -104,7 +112,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -6.8000, lng: 39.2833 },
     mood: { energy: 'medium', vibe: 'social', intensity: 7 },
     weather: { condition: 'sunny', temp: 27, isOutdoor: false },
-    transport: { dalaDalaRoutes: ['Posta-Kilimanjaro Hotel'], bodaBodaTime: '12 min', walkingDistance: '600m from Kivukoni Front' }
+    transport: { dalaDalaRoutes: ['Posta-Kilimanjaro Hotel'], bodaBodaTime: '12 min', walkingDistance: '600m from Kivukoni Front' },
+    planner: { name: 'Mohamed Hassan', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Laugh Factory TZ' }
   },
   {
     id: '5',
@@ -120,7 +129,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -3.3869, lng: 36.6830 },
     mood: { energy: 'low', vibe: 'professional', intensity: 4 },
     weather: { condition: 'sunny', temp: 24, isOutdoor: false },
-    transport: { dalaDalaRoutes: ['Central Bus Station-AICC'], bodaBodaTime: '18 min', walkingDistance: '2km from Arusha Central Market' }
+    transport: { dalaDalaRoutes: ['Central Bus Station-AICC'], bodaBodaTime: '18 min', walkingDistance: '2km from Arusha Central Market' },
+    planner: { name: 'Grace Kimaro', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'EAC Business Network' }
   },
   {
     id: '6',
@@ -136,7 +146,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -2.5164, lng: 32.9175 },
     mood: { energy: 'high', vibe: 'energetic', intensity: 8 },
     weather: { condition: 'cloudy', temp: 25, isOutdoor: true },
-    transport: { dalaDalaRoutes: ['Nyamagana-Kirumba'], bodaBodaTime: '25 min', walkingDistance: '3km from Mwanza center' }
+    transport: { dalaDalaRoutes: ['Nyamagana-Kirumba'], bodaBodaTime: '25 min', walkingDistance: '3km from Mwanza center' },
+    planner: { name: 'James Mwalimu', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Lake Music Events' }
   },
   {
     id: '7',
@@ -152,7 +163,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -3.3398, lng: 37.3407 },
     mood: { energy: 'medium', vibe: 'energetic', intensity: 6 },
     weather: { condition: 'sunny', temp: 22, isOutdoor: true },
-    transport: { dalaDalaRoutes: ['Moshi Bus Stand-Town Center'], bodaBodaTime: '30 min', walkingDistance: 'Starting point in town center' }
+    transport: { dalaDalaRoutes: ['Moshi Bus Stand-Town Center'], bodaBodaTime: '30 min', walkingDistance: 'Starting point in town center' },
+    planner: { name: 'Peter Lyimo', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Kilimanjaro Sports' }
   },
   {
     id: '8',
@@ -168,7 +180,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -6.8161, lng: 39.2626 },
     mood: { energy: 'medium', vibe: 'cultural', intensity: 5 },
     weather: { condition: 'sunny', temp: 29, isOutdoor: true },
-    transport: { dalaDalaRoutes: ['Ubungo-Kariakoo', 'Mwenge-Kariakoo'], bodaBodaTime: '8 min', walkingDistance: '200m from Kariakoo bus stand' }
+    transport: { dalaDalaRoutes: ['Ubungo-Kariakoo', 'Mwenge-Kariakoo'], bodaBodaTime: '8 min', walkingDistance: '200m from Kariakoo bus stand' },
+    planner: { name: 'Amina Juma', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Street Food Tours TZ' }
   },
   {
     id: '9',
@@ -184,7 +197,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -6.7908, lng: 39.2694 },
     mood: { energy: 'medium', vibe: 'relaxed', intensity: 6 },
     weather: { condition: 'sunny', temp: 28, isOutdoor: false },
-    transport: { dalaDalaRoutes: ['Posta-Slipway'], bodaBodaTime: '22 min', walkingDistance: '1.5km from Msimbazi Center' }
+    transport: { dalaDalaRoutes: ['Posta-Slipway'], bodaBodaTime: '22 min', walkingDistance: '1.5km from Msimbazi Center' },
+    planner: { name: 'David Mwakasege', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Mchafuko Entertainment' }
   },
   {
     id: '10',
@@ -200,7 +214,8 @@ export const mockEvents: Event[] = [
     coordinates: { lat: -6.7885, lng: 39.2694 },
     mood: { energy: 'low', vibe: 'professional', intensity: 5 },
     weather: { condition: 'sunny', temp: 27, isOutdoor: false },
-    transport: { dalaDalaRoutes: ['Posta-Kempinski'], bodaBodaTime: '15 min', walkingDistance: '900m from Kivukoni Front' }
+    transport: { dalaDalaRoutes: ['Posta-Kempinski'], bodaBodaTime: '15 min', walkingDistance: '900m from Kivukoni Front' },
+    planner: { name: 'Rebecca Mtei', avatar: '@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png', company: 'Tanzania Innovation Hub' }
   }
 ];
 

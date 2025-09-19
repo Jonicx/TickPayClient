@@ -115,13 +115,6 @@ export default function EventDetails() {
         {/* Smart Notifications */}
         <SmartNotification events={[event]} />
 
-        {/* Mood Ring for Event */}
-        <div className="flex justify-center mb-8">
-          <MoodRing 
-            mood={event.mood} 
-          />
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
@@ -204,6 +197,15 @@ export default function EventDetails() {
                       {formatPrice(event.price)}
                     </p>
                     <p className="text-sm">Per Ticket</p>
+                  </div>
+                </div>
+
+                {/* Distance Information - only on details page */}
+                <div className="flex items-center text-muted-foreground col-span-2">
+                  <Truck className="w-5 h-5 mr-3 text-primary" />
+                  <div className="flex gap-4 text-sm">
+                    <span>🚌 {event.transport.bodaBodaTime} by boda</span>
+                    <span>🚶 {event.transport.walkingDistance}</span>
                   </div>
                 </div>
               </div>

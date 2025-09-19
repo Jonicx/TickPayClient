@@ -2,8 +2,9 @@ import { Link } from 'wouter';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import MoodRing from '@/components/MoodRing';
-import { Calendar, Clock, MapPin, Users, Cloud, Sun, CloudRain, Zap } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Cloud, Sun, CloudRain, Zap, User } from 'lucide-react';
 import type { Event } from '@shared/data';
 
 interface EventCardProps {
@@ -47,7 +48,7 @@ export default function EventCard({ event, className = '' }: EventCardProps) {
         <img
           src={event.image}
           alt={event.title}
-          className="w-full h-48 object-cover transition-transform group-hover:scale-105"
+          className="w-full h-48 object-cover"
           data-testid={`img-event-${event.id}`}
         />
         <div className="absolute top-3 left-3">
@@ -91,14 +92,28 @@ export default function EventCard({ event, className = '' }: EventCardProps) {
       </CardContent>
       
       <CardFooter className="p-4 pt-0 space-y-3">
-        {/* Transport Info */}
-        <div className="text-xs text-muted-foreground flex items-center justify-between w-full">
-          <span>🚌 {event.transport.bodaBodaTime} by boda</span>
-          <span>🚶 {event.transport.walkingDistance}</span>
+        {/* Event Planner Info */}
+        <div className="flex items-center space-x-3 p-2 bg-muted/30 rounded-lg">
+          <Avatar className="w-8 h-8">
+            <AvatarImage src={event.planner.avatar} alt={event.planner.name} />
+            <AvatarFallback>
+              <User className="w-4 h-4" />
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-medium text-foreground truncate" data-testid={`text-planner-${event.id}`}>
+              {event.planner.name}
+            </p>
+            {event.planner.company && (
+              <p className="text-xs text-muted-foreground truncate">
+                {event.planner.company}
+              </p>
+            )}
+          </div>
         </div>
         
         <Link href={`/events/${event.id}`} className="w-full" data-testid={`link-event-details-${event.id}`}>
-          <Button className="w-full group-hover:scale-105 transition-transform">
+          <Button className="w-full">
             <Users className="w-4 h-4 mr-2" />
             View Details
           </Button>
