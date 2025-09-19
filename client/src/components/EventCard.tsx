@@ -40,7 +40,7 @@ export default function EventCard({ event, className = '' }: EventCardProps) {
   };
 
   return (
-    <Card className={`group hover-elevate overflow-hidden bg-card/90 backdrop-blur-sm border-card-border relative ${className}`} data-testid={`card-event-${event.id}`}>
+    <Card className={`group overflow-hidden bg-card/90 backdrop-blur-sm border-card-border relative ${className}`} data-testid={`card-event-${event.id}`}>
       {/* Dynamic Mood Ring */}
       <MoodRing mood={event.mood} />
       
@@ -91,33 +91,37 @@ export default function EventCard({ event, className = '' }: EventCardProps) {
         </div>
       </CardContent>
       
-      <CardFooter className="p-4 pt-0 space-y-3">
-        {/* Event Planner Info */}
-        <div className="flex items-center space-x-3 p-2 bg-muted/30 rounded-lg">
-          <Avatar className="w-8 h-8">
-            <AvatarImage src={event.planner.avatar} alt={event.planner.name} />
-            <AvatarFallback>
-              <User className="w-4 h-4" />
-            </AvatarFallback>
-          </Avatar>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-medium text-foreground truncate" data-testid={`text-planner-${event.id}`}>
-              {event.planner.name}
-            </p>
-            {event.planner.company && (
-              <p className="text-xs text-muted-foreground truncate">
-                {event.planner.company}
+      <CardFooter className="p-4 pt-0">
+        {/* Event Planner Info and Button sharing space evenly */}
+        <div className="flex items-center gap-3">
+          {/* Event Planner Info - takes half the space */}
+          <div className="flex items-center space-x-2 flex-1 p-2 bg-muted/30 rounded-lg min-w-0">
+            <Avatar className="w-7 h-7 flex-shrink-0">
+              <AvatarImage src={event.planner.avatar} alt={event.planner.name} />
+              <AvatarFallback>
+                <User className="w-3 h-3" />
+              </AvatarFallback>
+            </Avatar>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-medium text-foreground truncate" data-testid={`text-planner-${event.id}`}>
+                {event.planner.name}
               </p>
-            )}
+              {event.planner.company && (
+                <p className="text-xs text-muted-foreground truncate">
+                  {event.planner.company}
+                </p>
+              )}
+            </div>
           </div>
+          
+          {/* View Button - takes half the space */}
+          <Link href={`/events/${event.id}`} className="flex-1" data-testid={`link-event-details-${event.id}`}>
+            <Button className="w-full" size="sm">
+              <Users className="w-3 h-3 mr-1" />
+              View
+            </Button>
+          </Link>
         </div>
-        
-        <Link href={`/events/${event.id}`} className="w-full" data-testid={`link-event-details-${event.id}`}>
-          <Button className="w-full">
-            <Users className="w-4 h-4 mr-2" />
-            View Details
-          </Button>
-        </Link>
       </CardFooter>
     </Card>
   );
