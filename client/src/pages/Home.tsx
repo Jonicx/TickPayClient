@@ -12,35 +12,35 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <Badge variant="outline" className="mb-6 bg-primary/10 text-primary border-primary/20" data-testid="badge-hero-tagline">
+      <section className="relative py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <Badge variant="outline" className="mb-8 bg-primary/10 text-primary border-primary/20 px-4 py-2" data-testid="badge-hero-tagline">
             <Zap className="w-4 h-4 mr-2" />
             Your Premium Ticket Experience
           </Badge>
           
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6" data-testid="text-hero-title">
+          <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 leading-tight" data-testid="text-hero-title">
             Discover Amazing
             <span className="block bg-gradient-to-r from-primary to-yellow-400 bg-clip-text text-transparent">
               Events in Tanzania
             </span>
           </h1>
           
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto" data-testid="text-hero-description">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed" data-testid="text-hero-description">
             From live concerts to sports events, food festivals to comedy shows - find and book tickets for the best experiences across Tanzania.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/events" data-testid="link-explore-events">
-              <Button size="lg" className="w-full sm:w-auto">
-                <Calendar className="w-5 h-5 mr-2" />
+              <Button size="lg" className="w-full sm:w-auto px-8 py-4 text-lg">
+                <Calendar className="w-5 h-5 mr-3" />
                 Explore Events
               </Button>
             </Link>
             
             <Link href="/my-tickets" data-testid="link-my-tickets">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto bg-background/50 backdrop-blur-sm">
-                <Ticket className="w-5 h-5 mr-2" />
+              <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 py-4 text-lg bg-background/50 backdrop-blur-sm">
+                <Ticket className="w-5 h-5 mr-3" />
                 My Tickets
               </Button>
             </Link>
@@ -49,29 +49,37 @@ export default function Home() {
       </section>
 
       {/* Featured Events Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-between mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2" data-testid="text-featured-title">
+              <h2 className="text-4xl font-bold text-foreground mb-3" data-testid="text-featured-title">
                 Featured Events
               </h2>
-              <p className="text-muted-foreground" data-testid="text-featured-description">
+              <p className="text-lg text-muted-foreground" data-testid="text-featured-description">
                 Don't miss out on these popular events happening soon
               </p>
             </div>
             
             <Link href="/events" data-testid="link-view-all-events">
-              <Button variant="outline">
+              <Button variant="outline" className="hidden sm:flex">
                 View All Events
               </Button>
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="grid-featured-events">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-testid="grid-featured-events">
             {featuredEvents.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
+          </div>
+          
+          <div className="mt-12 text-center sm:hidden">
+            <Link href="/events" data-testid="link-view-all-events-mobile">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                View All Events
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

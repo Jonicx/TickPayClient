@@ -25,13 +25,15 @@ export default function Navigation({ className = '' }: NavigationProps) {
   };
 
   return (
-    <nav className={`bg-background/80 backdrop-blur-md border-b border-border sticky top-0 z-50 ${className}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className={`bg-background/95 backdrop-blur-xl border-b border-border/50 sticky top-0 z-50 ${className}`}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" data-testid="link-home">
-            <div className="flex items-center space-x-2 hover-elevate rounded-lg px-3 py-2">
-              <Ticket className="h-8 w-8 text-primary" />
+            <div className="flex items-center space-x-3 group">
+              <div className="p-2 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <Ticket className="h-6 w-6 text-primary" />
+              </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-yellow-400 bg-clip-text text-transparent">
                 TickPay
               </span>
@@ -39,18 +41,26 @@ export default function Navigation({ className = '' }: NavigationProps) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-${item.label.toLowerCase().replace(' ', '-')}`}>
-                <Button
-                  variant={isActive(item.href) ? 'default' : 'ghost'}
-                  className="relative"
-                >
-                  {item.label}
+                <div className="relative group">
+                  <span className={`
+                    text-sm font-medium transition-colors duration-200 py-2 px-1
+                    ${isActive(item.href) 
+                      ? 'text-primary' 
+                      : 'text-muted-foreground hover:text-foreground'
+                    }
+                  `}>
+                    {item.label}
+                  </span>
                   {isActive(item.href) && (
-                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                    <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary rounded-full" />
                   )}
-                </Button>
+                  {!isActive(item.href) && (
+                    <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary/30 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
+                  )}
+                </div>
               </Link>
             ))}
           </div>
@@ -62,25 +72,31 @@ export default function Navigation({ className = '' }: NavigationProps) {
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
               data-testid="button-mobile-menu"
+              className="hover:bg-muted/50"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col space-y-2">
+          <div className="md:hidden py-6 border-t border-border/50">
+            <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href} data-testid={`mobile-link-${item.label.toLowerCase().replace(' ', '-')}`}>
-                  <Button
-                    variant={isActive(item.href) ? 'default' : 'ghost'}
-                    className="w-full justify-start"
+                  <div 
+                    className={`
+                      text-base font-medium py-3 px-2 rounded-lg transition-colors
+                      ${isActive(item.href) 
+                        ? 'text-primary bg-primary/5' 
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'
+                      }
+                    `}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
-                  </Button>
+                  </div>
                 </Link>
               ))}
             </div>
