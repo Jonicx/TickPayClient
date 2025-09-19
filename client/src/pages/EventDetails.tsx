@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import EventMap from '@/components/EventMap';
-import { Calendar, Clock, MapPin, Users, Ticket, ArrowLeft } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Ticket, ArrowLeft, Star } from 'lucide-react';
 import { mockEvents } from '@shared/data';
 
 export default function EventDetails() {
@@ -56,13 +56,21 @@ export default function EventDetails() {
     <div className="min-h-screen py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Back Button */}
-        <div className="mb-6">
+        <div className="mb-8">
           <Link href="/events" data-testid="link-back-to-events">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Events
             </Button>
           </Link>
+        </div>
+        
+        {/* Premium Badge */}
+        <div className="text-center mb-8">
+          <Badge variant="outline" className="mb-4 bg-yellow-400/10 text-yellow-400 border-yellow-400/20 px-4 py-2" data-testid="badge-event-details-tagline">
+            <Star className="w-4 h-4 mr-2" />
+            Premium Event Experience
+          </Badge>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

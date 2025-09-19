@@ -85,31 +85,44 @@ export default function Home() {
       </section>
 
       {/* Quick Stats */}
-      <section className="py-16 px-4 bg-card/30 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <section className="py-20 px-6 bg-card/20 backdrop-blur-sm border-y border-border/20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4 bg-yellow-400/10 text-yellow-400 border-yellow-400/20 px-4 py-2" data-testid="badge-stats-tagline">
+              <Star className="w-4 h-4 mr-2" />
+              Trusted by Thousands
+            </Badge>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div data-testid="stat-events">
-              <div className="flex items-center justify-center mb-4">
-                <Calendar className="w-8 h-8 text-primary" />
+              <div className="flex items-center justify-center mb-6">
+                <div className="p-4 bg-primary/10 rounded-xl">
+                  <Calendar className="w-8 h-8 text-primary" />
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">500+</h3>
-              <p className="text-muted-foreground">Events Listed</p>
+              <h3 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mb-3">500+</h3>
+              <p className="text-lg text-muted-foreground font-medium">Events Listed</p>
             </div>
             
             <div data-testid="stat-customers">
-              <div className="flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-yellow-400" />
+              <div className="flex items-center justify-center mb-6">
+                <div className="p-4 bg-yellow-400/10 rounded-xl">
+                  <Star className="w-8 h-8 text-yellow-400" />
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">10K+</h3>
-              <p className="text-muted-foreground">Happy Customers</p>
+              <h3 className="text-4xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent mb-3">10K+</h3>
+              <p className="text-lg text-muted-foreground font-medium">Happy Customers</p>
             </div>
             
             <div data-testid="stat-cities">
-              <div className="flex items-center justify-center mb-4">
-                <Ticket className="w-8 h-8 text-primary" />
+              <div className="flex items-center justify-center mb-6">
+                <div className="p-4 bg-primary/10 rounded-xl">
+                  <Ticket className="w-8 h-8 text-primary" />
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">25+</h3>
-              <p className="text-muted-foreground">Cities Covered</p>
+              <h3 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mb-3">25+</h3>
+              <p className="text-lg text-muted-foreground font-medium">Cities Covered</p>
             </div>
           </div>
         </div>

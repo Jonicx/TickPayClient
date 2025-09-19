@@ -177,9 +177,18 @@ export default function Contact() {
 
           {/* Contact Information */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-foreground mb-6" data-testid="text-contact-info-title">
-              Contact Information
-            </h2>
+            <div className="mb-8">
+              <Badge variant="outline" className="mb-4 bg-yellow-400/10 text-yellow-400 border-yellow-400/20 px-4 py-2" data-testid="badge-contact-info-tagline">
+                <Phone className="w-4 h-4 mr-2" />
+                Get In Touch
+              </Badge>
+              <h2 className="text-3xl font-bold text-foreground mb-3" data-testid="text-contact-info-title">
+                Contact Information
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                We're here to help with any questions or concerns
+              </p>
+            </div>
             
             {contactInfo.map((info, index) => (
               <Card key={index} className="bg-card/90 backdrop-blur-sm border-card-border hover-elevate">

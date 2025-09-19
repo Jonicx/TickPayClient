@@ -37,11 +37,15 @@ export default function Events() {
     <div className="min-h-screen py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2" data-testid="text-events-title">
+        <div className="mb-12">
+          <Badge variant="outline" className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-2" data-testid="badge-events-tagline">
+            <Search className="w-4 h-4 mr-2" />
+            Premium Events
+          </Badge>
+          <h1 className="text-4xl font-bold text-foreground mb-3" data-testid="text-events-title">
             All Events
           </h1>
-          <p className="text-muted-foreground" data-testid="text-events-description">
+          <p className="text-lg text-muted-foreground" data-testid="text-events-description">
             Find and book tickets for amazing events across Tanzania
           </p>
         </div>

@@ -1,5 +1,6 @@
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import TicketCard from '@/components/TicketCard';
 import { Ticket, Calendar, Plus } from 'lucide-react';
 import { mockTickets } from '@shared/data';
@@ -12,12 +13,16 @@ export default function MyTickets() {
     <div className="min-h-screen py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-12">
           <div>
-            <h1 className="text-3xl font-bold text-foreground mb-2" data-testid="text-tickets-title">
+            <Badge variant="outline" className="mb-4 bg-yellow-400/10 text-yellow-400 border-yellow-400/20 px-4 py-2" data-testid="badge-tickets-tagline">
+              <Ticket className="w-4 h-4 mr-2" />
+              Your Collection
+            </Badge>
+            <h1 className="text-4xl font-bold text-foreground mb-3" data-testid="text-tickets-title">
               My Tickets
             </h1>
-            <p className="text-muted-foreground" data-testid="text-tickets-description">
+            <p className="text-lg text-muted-foreground" data-testid="text-tickets-description">
               View and manage your purchased event tickets
             </p>
           </div>

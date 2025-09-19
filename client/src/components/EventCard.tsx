@@ -49,13 +49,9 @@ export default function EventCard({ event, className = '' }: EventCardProps) {
       </div>
       
       <CardContent className="p-4">
-        <h3 className="font-semibold text-lg text-foreground mb-2 line-clamp-2" data-testid={`text-title-${event.id}`}>
+        <h3 className="font-semibold text-lg text-foreground mb-4 line-clamp-2" data-testid={`text-title-${event.id}`}>
           {event.title}
         </h3>
-        
-        <p className="text-muted-foreground text-sm mb-3 line-clamp-2" data-testid={`text-description-${event.id}`}>
-          {event.description}
-        </p>
         
         <div className="space-y-2">
           <div className="flex items-center text-sm text-muted-foreground">
