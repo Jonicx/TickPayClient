@@ -8,7 +8,7 @@ import MoodFilters from '@/components/MoodFilters';
 import SmartNotification from '@/components/SmartNotification';
 import TicketPreview3D from '@/components/TicketPreview3D';
 import { useSound } from '@/components/SoundPlayer';
-import { useLanguage } from '@/hooks/useLanguage';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useGestures } from '@/hooks/useGestures';
 import { Calendar, Star, Ticket, Zap, Sparkles, Heart, Music, Globe, Users, MapPin, TrendingUp, ArrowLeft, ArrowRight } from 'lucide-react';
 import { mockEvents, Event } from '@shared/data';
@@ -16,6 +16,11 @@ import { mockEvents, Event } from '@shared/data';
 export default function Home() {
   const { language, t } = useLanguage();
   const { playSound } = useSound();
+  
+  // Debug logging for language changes
+  useEffect(() => {
+    console.log('Home component language changed to:', language);
+  }, [language]);
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [hoveredEventId, setHoveredEventId] = useState<string | null>(null);
   const [show3DPreview, setShow3DPreview] = useState(false);
@@ -117,18 +122,21 @@ export default function Home() {
             data-testid="badge-hero-tagline"
           >
             <Sparkles className="w-4 h-4 mr-2" />
-            {t('home.tagline')}
+            {language === 'sw' ? 'Uzoefu Wako wa Tiketi za Ubora' : 'Your Premium Ticket Experience'}
           </Badge>
           
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 leading-tight" data-testid="text-hero-title">
-            {t('home.title').split(' ').slice(0, 2).join(' ')}
+            {language === 'sw' ? 'Gundua Matukio' : 'Discover Amazing'}
             <span className="block bg-gradient-to-r from-primary to-yellow-400 bg-clip-text text-transparent animate-gradient-x">
-              {t('home.title').split(' ').slice(2).join(' ')}
+              {language === 'sw' ? 'ya Ajabu Tanzania' : 'Events in Tanzania'}
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed" data-testid="text-hero-description">
-            {t('home.subtitle')}
+            {language === 'sw' 
+              ? 'Kutoka tamasha za muziki hadi michezo, sherehe za chakula hadi vipindi vya ucheshi - tafuta na uagize tiketi za uzoefu bora nchini Tanzania.'
+              : 'From live concerts to sports events, food festivals to comedy shows - find and book tickets for the best experiences across Tanzania.'
+            }
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

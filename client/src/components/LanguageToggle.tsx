@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Globe } from 'lucide-react';
-import { useLanguage } from '@/hooks/useLanguage';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface LanguageToggleProps {
   className?: string;
@@ -10,11 +10,17 @@ interface LanguageToggleProps {
 export default function LanguageToggle({ className = '' }: LanguageToggleProps) {
   const { language, toggleLanguage } = useLanguage();
   
+  const handleToggle = () => {
+    console.log('Language toggle clicked, current language:', language);
+    toggleLanguage();
+    console.log('Language after toggle:', language === 'en' ? 'sw' : 'en');
+  };
+  
   return (
     <Button
       variant="ghost"
       size="sm"
-      onClick={toggleLanguage}
+      onClick={handleToggle}
       className={`flex items-center space-x-2 hover:bg-muted/50 ${className}`}
       data-testid="button-language-toggle"
     >

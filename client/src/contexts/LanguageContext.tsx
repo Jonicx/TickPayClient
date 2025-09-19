@@ -1,6 +1,13 @@
-import { useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export type Language = 'en' | 'sw';
+
+interface LanguageContextType {
+  language: Language;
+  t: (key: string) => string;
+  toggleLanguage: () => void;
+  setLanguagePreference: (lang: Language) => void;
+}
 
 interface Translations {
   en: {
@@ -68,7 +75,13 @@ const translations: Translations = {
   }
 };
 
-export function useLanguage() {
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguage] = useState<Language>(() => {
     // Check localStorage for saved language preference (only on client side)
     if (typeof window !== 'undefined') {
@@ -83,6 +96,7 @@ export function useLanguage() {
     if (typeof window !== 'undefined') {
       localStorage.setItem('tickpay_language', language);
     }
+    console.log('LanguageContext: language changed to:', language);
   }, [language]);
 
   const t = (key: string): string => {
@@ -91,18 +105,33 @@ export function useLanguage() {
 
   const toggleLanguage = () => {
     const newLang = language === 'en' ? 'sw' : 'en';
-    console.log('toggleLanguage: changing from', language, 'to', newLang);
+    console.log('LanguageContext: toggleLanguage: changing from', language, 'to', newLang);
     setLanguage(newLang);
   };
 
   const setLanguagePreference = (lang: Language) => {
+    console.log('LanguageContext: setLanguagePreference to', lang);
     setLanguage(lang);
   };
 
-  return {
+  const value = {
     language,
     t,
     toggleLanguage,
-    setLanguagePreference
+    setLanguagePreference,
   };
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
 }
