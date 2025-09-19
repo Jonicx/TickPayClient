@@ -9,7 +9,8 @@ import SmartNotification from '@/components/SmartNotification';
 import TicketPreview3D from '@/components/TicketPreview3D';
 import { useSound } from '@/components/SoundPlayer';
 import { useLanguage } from '@/hooks/useLanguage';
-import { Calendar, Star, Ticket, Zap, Sparkles, Heart, Music, Globe, Users, MapPin, TrendingUp } from 'lucide-react';
+import { useGestures } from '@/hooks/useGestures';
+import { Calendar, Star, Ticket, Zap, Sparkles, Heart, Music, Globe, Users, MapPin, TrendingUp, ArrowLeft, ArrowRight } from 'lucide-react';
 import { mockEvents, Event } from '@shared/data';
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
   const [hoveredEventId, setHoveredEventId] = useState<string | null>(null);
   const [show3DPreview, setShow3DPreview] = useState(false);
   const [previewEvent, setPreviewEvent] = useState<Event | null>(null);
+  const [currentEventPage, setCurrentEventPage] = useState(0);
   
   // TODO: remove mock functionality - get featured events from API
   const allEvents = mockEvents;
@@ -29,7 +31,31 @@ export default function Home() {
     return allEvents.filter(event => event.mood.vibe === selectedMood);
   }, [selectedMood]);
   
-  const featuredEvents = filteredEvents.slice(0, 6);
+  // Pagination for mobile gesture browsing
+  const eventsPerPage = 6;
+  const totalPages = Math.ceil(filteredEvents.length / eventsPerPage);
+  const featuredEvents = filteredEvents.slice(
+    currentEventPage * eventsPerPage,
+    (currentEventPage + 1) * eventsPerPage
+  );
+
+  // Gesture controls for mobile browsing
+  const { gestureState } = useGestures(
+    () => {
+      // Swipe left - next page
+      if (currentEventPage < totalPages - 1) {
+        setCurrentEventPage(prev => prev + 1);
+        playSound('click');
+      }
+    },
+    () => {
+      // Swipe right - previous page
+      if (currentEventPage > 0) {
+        setCurrentEventPage(prev => prev - 1);
+        playSound('click');
+      }
+    }
+  );
   
   // Handle event hover for sound effects and 3D preview
   const handleEventHover = (event: Event | null) => {
@@ -56,6 +82,7 @@ export default function Home() {
   // Handle mood filter change
   const handleMoodChange = (mood: string | null) => {
     setSelectedMood(mood);
+    setCurrentEventPage(0); // Reset to first page when mood changes
     playSound('click');
   };
 
@@ -245,6 +272,55 @@ export default function Home() {
                 </Button>
               </CardContent>
             </Card>
+          )}
+          
+          {/* Mobile Gesture Navigation */}
+          {filteredEvents.length > eventsPerPage && (
+            <div className="mt-8 flex items-center justify-between sm:hidden">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  if (currentEventPage > 0) {
+                    setCurrentEventPage(prev => prev - 1);
+                    playSound('click');
+                  }
+                }}
+                disabled={currentEventPage === 0}
+                className="hover:scale-105 transition-transform"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                {language === 'sw' ? 'Nyuma' : 'Previous'}
+              </Button>
+              
+              <div className="flex items-center space-x-2">
+                <Badge variant="outline" className="px-3 py-1">
+                  {currentEventPage + 1} / {totalPages}
+                </Badge>
+                {gestureState.swipeDirection && (
+                  <div className="flex items-center space-x-1 text-xs text-muted-foreground animate-pulse">
+                    <Sparkles className="w-3 h-3" />
+                    <span>{language === 'sw' ? 'Swipe' : 'Swipe'}</span>
+                  </div>
+                )}
+              </div>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  if (currentEventPage < totalPages - 1) {
+                    setCurrentEventPage(prev => prev + 1);
+                    playSound('click');
+                  }
+                }}
+                disabled={currentEventPage === totalPages - 1}
+                className="hover:scale-105 transition-transform"
+              >
+                {language === 'sw' ? 'Mbele' : 'Next'}
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
           )}
           
           <div className="mt-12 text-center sm:hidden">
