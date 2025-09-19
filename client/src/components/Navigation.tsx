@@ -7,17 +7,29 @@ interface NavigationProps {
   className?: string;
 }
 
-const navItems = [
+// TODO: Add authentication state management when implementing login
+const publicNavItems = [
   { href: '/', label: 'Home' },
   { href: '/events', label: 'Events' },
-  { href: '/my-tickets', label: 'My Tickets' },
   { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+];
+
+const privateNavItems = [
+  { href: '/my-tickets', label: 'My Tickets' },
+  // TODO: Add organizer/admin items when implementing authentication
+  // { href: '/organizer', label: 'Organizer' },
+  // { href: '/admin', label: 'Admin' },
 ];
 
 export default function Navigation({ className = '' }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
+  
+  // TODO: Replace with real authentication state when implementing login
+  const isLoggedIn = false; // Mock authentication state
+  
+  // Combine nav items based on authentication status
+  const navItems = isLoggedIn ? [...publicNavItems, ...privateNavItems] : publicNavItems;
 
   const isActive = (href: string) => {
     if (href === '/') return location === '/';

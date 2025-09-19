@@ -12,7 +12,6 @@ import EventDetails from "@/pages/EventDetails";
 import MyTickets from "@/pages/MyTickets";
 import Payment from "@/pages/Payment";
 import About from "@/pages/About";
-import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -24,7 +23,6 @@ function Router() {
       <Route path="/my-tickets" component={MyTickets} />
       <Route path="/payment/:id" component={Payment} />
       <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
