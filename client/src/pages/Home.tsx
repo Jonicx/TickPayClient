@@ -12,6 +12,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useGestures } from '@/hooks/useGestures';
 import { Calendar, Star, Ticket, Zap, Sparkles, Heart, Music, Globe, Users, MapPin, TrendingUp, ArrowLeft, ArrowRight } from 'lucide-react';
 import { mockEvents, Event } from '@shared/data';
+import StarParticleBackground from '@/components/StarParticleBackground';
 
 export default function Home() {
   const { language, t } = useLanguage();
@@ -92,7 +93,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
+      {/* Enhanced Star Particle Background */}
+      <StarParticleBackground />
       {/* 3D Ticket Preview Overlay */}
       {show3DPreview && previewEvent && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -241,7 +244,7 @@ export default function Home() {
                 
                 <div 
                   className={`group cursor-pointer transition-all duration-300 ${
-                    hoveredEventId === event.id ? 'scale-105 rotate-1' : ''
+                    hoveredEventId === event.id ? '' : '' //Rotation effect removed for better UX
                   }`}
                   onClick={() => handle3DPreview(event)}
                 >

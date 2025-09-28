@@ -14,6 +14,9 @@ const publicNavItems = [
   { href: '/', label: 'Home' },
   { href: '/events', label: 'Events' },
   { href: '/about', label: 'About' },
+  { href: '/how-to-sell', label: 'howToSell' },
+
+
 ];
 
 const privateNavItems = [
@@ -36,6 +39,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
     const translatedPublic = [
       { href: '/', label: t('nav.home') },
       { href: '/events', label: t('nav.events') },
+      { href: '/how-to-sell', label: t('nav.howToSell') },
       { href: '/about', label: t('nav.about') },
     ];
     const translatedPrivate = [

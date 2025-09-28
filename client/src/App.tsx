@@ -14,12 +14,14 @@ import MyTickets from "@/pages/MyTickets";
 import Payment from "@/pages/Payment";
 import About from "@/pages/About";
 import NotFound from "@/pages/not-found";
+import HowToSell from "./pages/HowToSell";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/events" component={Events} />
+      <Route path="/how-to-sell" component={HowToSell} />
       <Route path="/events/:id" component={EventDetails} />
       <Route path="/my-tickets" component={MyTickets} />
       <Route path="/payment/:id" component={Payment} />
