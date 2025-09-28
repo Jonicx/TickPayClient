@@ -11,6 +11,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useSound } from '@/components/SoundPlayer';
 import { Calendar, Clock, MapPin, Users, Ticket, ArrowLeft, Star, Cloud, Sun, Truck } from 'lucide-react';
 import { mockEvents, type Event } from '@shared/data';
+import qrPlaceholder from '../../public/images/QR_code_placeholder_ticket_fe39157e.png';;
+
 
 export default function EventDetails() {
   const { id } = useParams<{ id: string }>();
@@ -274,7 +276,7 @@ export default function EventDetails() {
                   onClick={handle3DPreview}
                 >
                   <img
-                    src="@assets/generated_images/QR_code_placeholder_ticket_fe39157e.png"
+                    src={qrPlaceholder}
                     alt="Sample QR Code"
                     className="w-32 h-32 mx-auto border border-border rounded-lg mb-4 hover:border-primary/50 transition-colors"
                     data-testid={`img-sample-qr-${event.id}`}
